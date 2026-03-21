@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: Never
         resources:
           requests:
-            memory: "256Mi"   # అప్లికేషన్ స్టార్ట్ అవ్వడానికి కావాల్సిన కనీస మెమరీ
+            memory: "512Mi"   # అప్లికేషన్ స్టార్ట్ అవ్వడానికి కావాల్సిన కనీస మెమరీ
             cpu: "500m"       # 0.5 Core CPU
           limits:
             memory: "512Mi"   # అప్లికేషన్ గరిష్టంగా ఇంతకంటే ఎక్కువ వాడకూడదు

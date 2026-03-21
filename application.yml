@@ -6,7 +6,7 @@ spring.kafka.ssl.key-store-location=file:/etc/certs/keystore.jks
 spring.kafka.ssl.key-store-password=password123
 spring.kafka.ssl.key-password=password123
 
-# కుబెర్నెటీస్ హెల్త్ గ్రూప్స్ ఎనేబుల్ చేయడానికి
+  # కుబెర్నెటీస్ హెల్త్ గ్రూప్స్ ఎనేబుల్ చేయడానికి
 management.endpoint.health.probes.enabled=true
 management.health.livenessstate.enabled=true
 management.health.readinessstate.enabled=true

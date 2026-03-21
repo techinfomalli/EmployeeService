@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.net.InetAddress;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class EmployeeController {
@@ -29,5 +31,33 @@ public class EmployeeController {
         } catch (Exception e) {
             return "Error getting hostname";
         }
+
+
     }
+
+    @GetMapping("/api/info")
+    public Map<String, Object> getAppDetailedStatus() {
+        Map<String, Object> details = new HashMap<>();
+        try {
+            InetAddress ip = InetAddress.getLocalHost();
+            details.put("Status", "Running");
+            details.put("Pod_Name", ip.getHostName());
+            details.put("Pod_IP", ip.getHostAddress());
+            details.put("Java_Version", System.getProperty("java.version"));
+            details.put("OS", System.getProperty("os.name"));
+
+            // Memory details (Architect Level Monitoring)
+            long totalMemory = Runtime.getRuntime().totalMemory() / (1024 * 1024);
+            long freeMemory = Runtime.getRuntime().freeMemory() / (1024 * 1024);
+            details.put("Total_Memory_MB", totalMemory);
+            details.put("Free_Memory_MB", freeMemory);
+
+            details.put("DB_Password_Configured", (dbPassword != null && !dbPassword.isEmpty()));
+            details.put("Timestamp", new Date().toString());
+        } catch (Exception e) {
+            details.put("Error", "Could not retrieve system details: " + e.getMessage());
+        }
+        return details;
+    }
+
 }
